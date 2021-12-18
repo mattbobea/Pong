@@ -1,0 +1,34 @@
+from turtle import Screen, Turtle
+
+
+class Paddle(Turtle):
+
+    def __init__(self, position):
+        super().__init__()
+        self.shape("square")
+        self.color("pink", "pink")
+        self.shapesize(stretch_wid=5, stretch_len=1)
+        self.penup()
+        self.goto(position)
+
+    def go_up(self):
+        """raises the paddle"""
+        new_y = self.ycor() + 20
+        self.goto(self.xcor(), new_y)
+
+    def go_down(self):
+        """lowers the paddle"""
+        new_y = self.ycor() - 20
+        self.goto(self.xcor(), new_y)
+
+    def l_move(self):
+        """assigns keys to the left paddle"""
+        screen = Screen()
+        screen.onkey(key="w", fun=self.go_up)
+        screen.onkey(key="s", fun=self.go_down)
+
+    def r_move(self):
+        """assigns keys to the right paddle"""
+        screen = Screen()
+        screen.onkey(key="Up", fun=self.go_up)
+        screen.onkey(key="Down", fun=self.go_down)
